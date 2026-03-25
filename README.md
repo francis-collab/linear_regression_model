@@ -6,43 +6,99 @@ This model predicts youth unemployment rates (ages 15–24) across African count
 Accurate forecasts help design targeted digital skills programs, entrepreneurship platforms, and policy interventions.  
 The focus is Rwanda and the broader African context to support evidence-based job creation strategies.
 
-## Dataset
+## Task 1: Linear Regression Model
+
+**Dataset**  
 - **Source**: World Bank Open Data – Youth unemployment rate (% of total labor force ages 15-24), ILO modeled estimate  
 - **Link**: https://api.worldbank.org/v2/en/indicator/SL.UEM.1524.ZS?downloadformat=csv  
-- **Scope**: Filtered to African countries + regional aggregates (Africa Eastern and Southern, Africa Western and Central, etc.)  
-- **Time range**: 1991–2025 (includes projections for recent years)  
+- **Scope**: Filtered to African countries and regional aggregates  
+- **Time range**: 1991–2025  
 - **Records used**: ~2,000+ country-year pairs after filtering
 
-## Models Implemented
-- Linear Regression (gradient-descent style via `scipy.optimize.minimize` with L-BFGS-B)  
+**Models Implemented**  
+- Linear Regression (optimized with gradient descent using `scipy.optimize.minimize` L-BFGS-B)  
 - Decision Tree Regressor  
-- Random Forest Regressor (best performing model)
+- Random Forest Regressor (**best performing model**)
 
-## Best Model Performance (on test set)
+**Best Model Performance (Test Set)**  
 - **Random Forest**  
   - Test MSE: 1.7844  
   - R²: 0.9935  
-- Selected because it shows the lowest generalization error and highest explanatory power on unseen African data.
 
-## Files
-- `multivariate.ipynb` → main notebook with data cleaning, visualization, feature engineering, modeling, evaluation  
-- `best_youth_unemployment_model.pkl` → saved best model (RandomForestRegressor) 
+Selected because it achieved the lowest generalization error and highest explanatory power on African youth unemployment data.
 
-## How to Use the Saved Model (example)
-```python
-import pickle
-import pandas as pd
+**Files**  
+- `summative/linear_regression/multivariate.ipynb` → Complete notebook with data cleaning, visualizations, feature engineering, modeling, and evaluation  
+- `best_youth_unemployment_model.pkl` → Saved best model (RandomForestRegressor)
 
-model = pickle.load(open('best_youth_unemployment_model.pkl', 'rb'))
-new_data = pd.DataFrame({'Year': [2030], 'Country': ['Rwanda']})
-prediction = model.predict(new_data)
-print(f"Predicted youth unemployment rate in Rwanda 2030: {prediction[0]:.2f}%")
+## Task 2: FastAPI Backend
+
+**Live API Endpoint**  
+Base URL: https://linear-regression-model-fg0z.onrender.com  
+Swagger UI: https://linear-regression-model-fg0z.onrender.com/docs
+
+**Features Implemented**  
+- POST `/predict` – Predicts youth unemployment rate with Pydantic validation (Year range 1990–2040 + country validation)  
+- POST `/retrain` – Triggers model retraining when new data (CSV/JSON) is uploaded  
+- CORS middleware configured with explicit origins, methods (GET, POST, OPTIONS), headers, and credentials  
+- Deployed on Render with auto-deploy enabled
+
+**Local Testing**  
+Tested GET `/`, POST `/predict` (valid + invalid inputs), and POST `/retrain` before deployment.
+
+## Task 3: Flutter Mobile App
+
+**Features**  
+- Single clean page as required  
+- Two input fields: Year and Country  
+- "Predict Unemployment Rate" button  
+- Real-time result display with success/error cards  
+- Visually appealing design with mission-relevant icons (Africa 🌍 + Rwanda 🇷🇼), gradient background, and professional color scheme  
+
+**How to Run the Flutter App**  
+1. Clone the repository  
+2. `cd linear_regression_model/summative/FlutterApp`  
+3. `flutter pub get`  
+4. `flutter run`  
+5. Enter Year and Country → Tap "Predict Unemployment Rate"
+
+## Task 4: Video Demo
+
+**YouTube Video Link**  
+https://youtu.be/YOUR_VIDEO_ID_HERE  
+
+(5-minute demo showing:  
+- Task 1 notebook + model performance explanation    
+- Live Swagger UI testing (GET, POST /predict, POST /retrain) 
+- Flutter mobile app making real predictions  
+- Answers to all required questions: loss analysis, hyperparameters, new data handling, and CORS configuration)
+
+## Repository Structure
+
+```
+linear_regression_model/
+├── summative/
+│   ├── linear_regression/
+│   │   └── multivariate.ipynb
+│   ├── API/
+│   │   ├── main.py
+│   │   ├── requirements.txt
+│   │   └── best_youth_unemployment_model.pkl
+│   └── youth_unemployment_rate_prediction_app/
+│       ├── lib/
+│       │   ├── main.dart
+│       │   └── prediction_screen.dart
+│       └── pubspec.yaml
+└── README.md
 ```
 
-## Purpose of this work
-Support data-driven decision making for youth employment programs in Rwanda and across Africa by providing reliable, country-aware forecasts of youth unemployment trends.
+## Purpose of this Work
 
-## Author
+This project demonstrates a complete end-to-end machine learning solution — from data analysis and model building to API deployment and mobile application — all aligned with my mission of creating data-driven solutions for youth employment in Rwanda and Africa.
 
-**Francis Mutabazi**
-2026
+---
+
+**Author**: Francis Mutabazi  
+**Year**: 2026
+
+---

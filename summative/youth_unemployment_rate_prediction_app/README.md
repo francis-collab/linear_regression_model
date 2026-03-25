@@ -1,17 +1,15 @@
-# youth_unemployment_rate_prediction_app
+## Task 3: Flutter Mobile App
 
-A new Flutter project.
+**Features**  
+- Single clean page as required  
+- Two input fields: Year and Country  
+- "Predict Unemployment Rate" button  
+- Real-time result display with success/error cards  
+- Visually appealing design with mission-relevant icons (Africa 🌍 + Rwanda 🇷🇼), gradient background, and professional color scheme  
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**How to Run the Flutter App**  
+1. Clone the repository  
+2. `cd linear_regression_model/summative/FlutterApp`  
+3. `flutter pub get`  
+4. `flutter run`  
+5. Enter Year and Country → Tap "Predict Unemployment Rate"
