@@ -65,7 +65,7 @@ Tested GET `/`, POST `/predict` (valid + invalid inputs), and POST `/retrain` be
 ## Task 4: Video Demo
 
 **YouTube Video Link**  
-https://youtu.be/YOUR_VIDEO_ID_HERE  
+https://youtu.be/ADLKdrZfOkE  
 
 (5-minute demo showing:  
 - Task 1 notebook + model performance explanation    
