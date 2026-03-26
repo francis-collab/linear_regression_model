@@ -67,7 +67,7 @@ Tested GET `/`, POST `/predict` (valid + invalid inputs), and POST `/retrain` be
 **YouTube Video Link**  
 https://youtu.be/ADLKdrZfOkE  
 
-(5-minute demo showing:  
+(9-minute demo showing:  
 - Task 1 notebook + model performance explanation    
 - Live Swagger UI testing (GET, POST /predict, POST /retrain) 
 - Flutter mobile app making real predictions  
